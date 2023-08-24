@@ -34,23 +34,17 @@ public class StudentH2Service implements StudentRepository {
         }
     }
     
+    
 
     @Override 
 
-    public Student createStudent(Student student) {
+    public Student addStudent(Student student) {
     db.update("insert into student(studentName, gender, standard) values (?,?,?)", student.getStudentName(),
               student.getGender(), student.getStandard());
     return db.queryForObject("select * from student where studentName = ? and gender = ?", new StudentRowMapper(),
               student.getStudentName(), student.getGender());
     }
-    @Override
-
-    public Student addStudent(Student student) {
-        db.update("insert into student(studentName, gender, standard) values (?,?,?)", student.getStudentName(),
-                  student.getGender(), student.getStandard());
-        return db.queryForObject("select * from student where studentName = ? and gender = ?", new StudentRowMapper());
-                 
-    }
+   
 
     @Override 
 

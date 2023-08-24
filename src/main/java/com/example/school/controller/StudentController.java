@@ -18,20 +18,19 @@ public class StudentController {
     public ArrayList<Student> getStudents(){
         return studentService.getStudents();
     }
-
-    @PostMapping("/students")
-    public Student createStudent(@RequestBody Student student) {
-        return studentService.createStudent(student);
-
-    }
-    @PostMapping("/students/bulk")
-    public Student addStudent(@RequestBody Student student) {
-        return studentService.addStudent(student);
-    }
+     
+    
     @GetMapping("/students/{studentId}")
     public Student getStudentById(@PathVariable("studentId") int studentId){
         return studentService.getStudentById(studentId);
     }
+
+    
+    @PostMapping("/students")
+    public Student addStudent(@RequestBody Student student) {
+        return studentService.addStudent(student);
+    }
+   
     @PutMapping("/students/{studentId}")
     public Student updateStudent(@PathVariable("studentId") int studentId, @RequestBody Student student){
         return studentService.updateStudent(studentId, student);
@@ -42,4 +41,4 @@ public class StudentController {
     }
 
     
-        }
+}
