@@ -14,37 +14,42 @@ public class StudentController {
 
     @Autowired
     private StudentH2Service studentService;
-    
+
     @GetMapping("/students")
-    public ArrayList<Student> getAllStudents(){
+    public ArrayList<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
-     
-    
-    @GetMapping("/students/{studentId}")
-    public Student getStudentById(@PathVariable("studentId") int studentId) {
-        return studentService.getStudentById(studentId);
-    }
-   
 
     
+
     @PostMapping("/students")
-    public Student addStudent(@RequestBody Student student) {
-        return studentService.addStudent(student);
+    public Student addStudents(@RequestBody Student student){
+        return studentService.addStudents(student);
     }
 
     @PostMapping("/students/bulk")
-    public ArrayList<Student> addStudents(@RequestBody ArrayList<Student> students){
-        return studentService.addStudents(students);
+
+    public String addMultipleStudents(@RequestBody ArrayList<Student> studentsList) { 
+
+        return studentService.addMultipleStudents(studentsList);
     }
+    
+    @GetMapping("/students/{studentId}")
+    public Student getStudentById(@PathVariable("studentId") int studentId){
+        return studentService.getStudentById(studentId);
+    }
+
+
     @PutMapping("/students/{studentId}")
-    public Student updateStudent(@PathVariable("studentId") int studentId, @RequestBody Student student) {
-        return studentService.updateStudent(studentId, student);
-    }
-    @DeleteMapping("/students/{studentId}")
-    public void deleteStudent(@PathVariable int studentId){
-        studentService.deleteStudent(studentId);
+    public Student updateStudents(@PathVariable("studentId") int studentId, @RequestBody Student student){
+        return studentService.updateStudents(studentId, student);
     }
 
     
-}
+    @DeleteMapping("/students/{studentId}")
+    public void deleteStudents(@PathVariable int studentId){
+        studentService.deleteStudents(studentId);
+    }
+
+    
+}}

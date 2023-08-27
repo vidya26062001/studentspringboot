@@ -24,16 +24,16 @@ public class StudentH2Service implements StudentRepository {
 
     @Override
     public Student getStudentById(int id) {
-        try{
+        try {
             return db.queryForObject("select * from student where id = ?", new StudentRowMapper(), id);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
     @Override
    
-    public Student addStudent(Student student) {
+    public Student addStudents(Student student) {
         db.update("insert into student(studentName, gender, standard) values (?, ?, ?)",
                 student.getStudentName(), student.getGender(), student.getStandard());
 
@@ -41,39 +41,43 @@ public class StudentH2Service implements StudentRepository {
                 student.getStudentName(), student.getGender());
     }
 
-   @Override
-    public ArrayList<Student> addStudents(ArrayList<Student> students) {  
-   
-    
-    for (Student student : students) {
-        db.update("insert into student(studentName, gender, standard) values (?, ?, ?)",
-                student.getStudentName(), student.getGender(), student.getStandard());
-       
-    }
-    return students;
-}
-
     @Override
-   
-    public void deleteStudent(int studentId) {
-        db.update("delete from student where studentId = ?", studentId);
+    public String addMultipleStudents(ArrayList<Student> studentsList) { 
+
+        for (Student eachStudent : studentsList) { 
+
+            db.update("insert into student(studentName,gender,standard) values (?,?,?)", eachStudent.getStudentName(),
+                    eachStudent.getGender(), eachStudent.getStandard());
+        }
+
+
+        String responseMessage = String.format("Successfully added %d students", studentsList.size()); 
+
+        return responseMessage;
     }
 
+    
+
     @Override
     
-    public Student updateStudent(int studentId, Student student) {
-        if(student.getStudentName() != null){
-            db.update("update student set studentName = ? where studentId = ?", student.getStudentName(), studentId);
+    public Student updateStudents(int studentId, Student student) {
+        if (student.getStudentName() != null) {
+            db.update("update student set studentName = ? where studentId =?", student.getStudentName(), studentId);
         }
-        if(student.getGender() != null){
-            db.update("update student set gender = ? where studentId = ?", student.getGender(), studentId);
+        if (student.getGender() != null) {
+            db.update("update student set gender = ? where studentId =?", student.getGender(), studentId);
         }
-        if(student.getStandard() != 0){
-            db.update("update student set standard = ? where studentId = ?", student.getStandard(), studentId);
+        if (student.getStandard() != 0) {
+            db.update("update student set standard = ? where studentId =?", student.getStandard(), studentId);
         }
         return getStudentById(studentId);
 
         
+    }
+    @Override
+   
+    public void deleteStudents(int studentId) {
+        db.update("delete from student where studentId = ?", studentId);
     }
 }
 

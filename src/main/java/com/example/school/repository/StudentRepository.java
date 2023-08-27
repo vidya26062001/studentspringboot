@@ -9,11 +9,11 @@ public interface StudentRepository {
 
     Student getStudentById(int studentId);
 
-    Student addStudent(Student student);
+    Student addStudents(Student student);
 
-    ArrayList<Student> addStudents(ArrayList<Student> students);
+    String  addMultipleStudents(ArrayList<Student> studentsList);
     
-    Student updateStudent(int studentId, Student student);
+    Student updateStudents(int studentId, Student student);
 
-    void deleteStudent(int studentId);
+    void deleteStudents(int studentId);
 }
