@@ -33,7 +33,7 @@ public class StudentH2Service implements StudentRepository {
 
     @Override
    
-    public Student addStudents(Student student) {
+    public Student addStudent(Student student) {
         db.update("insert into student(studentName, gender, standard) values (?, ?, ?)",
                 student.getStudentName(), student.getGender(), student.getStandard());
 
@@ -60,7 +60,7 @@ public class StudentH2Service implements StudentRepository {
 
     @Override
     
-    public Student updateStudents(int studentId, Student student) {
+    public Student updateStudent(int studentId, Student student) {
         if (student.getStudentName() != null) {
             db.update("update student set studentName = ? where studentId =?", student.getStudentName(), studentId);
         }
@@ -76,7 +76,7 @@ public class StudentH2Service implements StudentRepository {
     }
     @Override
    
-    public void deleteStudents(int studentId) {
+    public void deleteStudent(int studentId) {
         db.update("delete from student where studentId = ?", studentId);
     }
 }

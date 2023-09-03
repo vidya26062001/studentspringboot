@@ -23,8 +23,8 @@ public class StudentController {
     
 
     @PostMapping("/students")
-    public Student addStudents(@RequestBody Student student){
-        return studentService.addStudents(student);
+    public Student addStudent(@RequestBody Student student){
+        return studentService.addStudent(student);
     }
 
     @PostMapping("/students/bulk")
@@ -41,14 +41,14 @@ public class StudentController {
 
 
     @PutMapping("/students/{studentId}")
-    public Student updateStudents(@PathVariable("studentId") int studentId, @RequestBody Student student){
-        return studentService.updateStudents(studentId, student);
+    public Student updateStudent(@PathVariable("studentId") int studentId, @RequestBody Student student){
+        return studentService.updateStudent(studentId, student);
     }
 
     
     @DeleteMapping("/students/{studentId}")
-    public void deleteStudents(@PathVariable int studentId){
-        studentService.deleteStudents(studentId);
+    public void deleteStudent(@PathVariable int studentId){
+        studentService.deleteStudent(studentId);
     }
 
     
