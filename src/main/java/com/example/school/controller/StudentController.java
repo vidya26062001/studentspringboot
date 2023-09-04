@@ -20,7 +20,10 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    
+    @GetMapping("/students/{studentId}")
+    public Student getStudentById(@PathVariable("studentId") int studentId){
+        return studentService.getStudentById(studentId);
+    }
 
     @PostMapping("/students")
     public Student addStudent(@RequestBody Student student){
@@ -34,13 +37,8 @@ public class StudentController {
         return studentService.addMultipleStudents(studentsList);
     }
     
-    @GetMapping("/students/{studentId}")
-    public Student getStudentById(@PathVariable("studentId") int studentId){
-        return studentService.getStudentById(studentId);
-    }
-
-
     @PutMapping("/students/{studentId}")
+    
     public Student updateStudent(@PathVariable("studentId") int studentId, @RequestBody Student student){
         return studentService.updateStudent(studentId, student);
     }
@@ -52,4 +50,4 @@ public class StudentController {
     }
 
     
-}}
+}

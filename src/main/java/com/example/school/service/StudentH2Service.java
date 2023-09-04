@@ -23,9 +23,9 @@ public class StudentH2Service implements StudentRepository {
     }
 
     @Override
-    public Student getStudentById(int id) {
+    public Student getStudentById(int studentId) {
         try {
-            return db.queryForObject("select * from student where id = ?", new StudentRowMapper(), id);
+            return db.queryForObject("select * from student where id = ?", new StudentRowMapper(), studentId);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
